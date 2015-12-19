@@ -4,6 +4,8 @@
 //USER PROPERTIES:
 var GUID = 0;
 
+//Erik
+
 //BOARD PROPERTIES:
 var HEIGHT = 16;
 var WIDTH = 16;
