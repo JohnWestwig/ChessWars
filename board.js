@@ -14,29 +14,18 @@ var LIGHT_SQUARE_COLOR = "#8B8D7A";
 var DARK_SQUARE_COLOR = "#006400";
 var WALL_COLOR = "#000000";
 var HIGHLIGHT_COLOR = "#AA0000";
-var STARTING_POSITION = "0000000000000000" +
-                        "0000000p00p000000000" +
-                        "000000p00b00r00p00000000" +
-                        "000000n00k00q00n00000000" +
-                        "000000p00r00b00p00000000" +
-                        "0000000p00p000000000" +
-                        "0000000000000000" +
-                        "0000000000000000" +
-                        "0000000000000000" +
-                        "0000000000000000" +
-                        "0000000p10p100000000" +
-                        "000000p10r10b10p10000000" +
-                        "000000n10k10q10n10000000" +
-                        "000000p10b10r10p10000000" +
-                        "0000000p10p100000000" +
-                        "0000000000000000";
 
 var squares = new Array(HEIGHT * WIDTH);
 var current_square = new Coord();
 
 var counter = 0;
-//var request_timer = setInterval(, 100)
+var request_timer = setInterval(timerUpdate, 100)
 
+var debug_state = "";
+
+function timerUpdate() {
+    requestUpdate("STATE", "");
+}
 
 function Square() {
     this.type = '0';
@@ -78,12 +67,14 @@ function init_board() {
     board.addEventListener("click", processMouseEvent, false);
     
     //Initialize board:
-    setBoard(STARTING_POSITION);
+    //setBoard(STARTING_POSITION);
     update();
 }
 
 function update() {
+    document.getElementById("debugOutput").innerHTML = debug_state;
     draw_squares();
+
 }
 
 function draw_squares() {
@@ -167,13 +158,16 @@ function setBoard(info_string) {
 function requestUpdate(type, details) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function process_request() {
-        var response = request.responseText.split("|");
-        if (response[0] === "SUCCESS") {
-            setBoard(response[2]);
-            update();
-        }
-        else {
-            alert(response[0] + ", Reason: " + response[1]);
+        if (request.readyState === 4 && request.status === 200){
+            var response = request.responseText.split("|");
+            debug_state = request.responseText;
+            if (response[0] === "SUCCESS") {
+                setBoard(response[2]);
+                update();
+            }
+            else {
+                //alert(response[0] + ", Reason: " + response[1]);
+            }
         }
     }
     request.open("GET", "SS/GameRequest.php?GUID=" + GUID + "&action=" + type + "&counter=" + (counter++), true);
