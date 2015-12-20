@@ -141,6 +141,7 @@ function setBoard(info_string) {
     info_string = info_string.replace(/\n/g, '');
     info_string = info_string.replace(/\r/g, '');
     //info_string = info_string.replace(' ', '');
+
     while (stringCount < info_string.length && arrayCount < HEIGHT * WIDTH) {
         squares[arrayCount] = new Square();
         squares[arrayCount].type = info_string[stringCount++];
