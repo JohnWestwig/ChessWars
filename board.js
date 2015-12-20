@@ -19,7 +19,7 @@ var squares = new Array(HEIGHT * WIDTH);
 var current_square = new Coord();
 
 var counter = 0;
-var request_timer = setInterval(timerUpdate, 100)
+var request_timer = setInterval(timerUpdate, 10)
 
 var debug_state = "";
 
@@ -138,8 +138,10 @@ function setBoard(info_string) {
     var arrayCount = 0;
     var stringCount = 0;
     
-    info_string = info_string.replace('\n', '');
-    info_string = info_string.replace('\r', '');
+    info_string = info_string.replace(/\n/g, '');
+    info_string = info_string.replace(/\r/g, '');
+    //info_string = info_string.replace(' ', '');
+    alert(info_string);
     while (stringCount < info_string.length && arrayCount < HEIGHT * WIDTH) {
         squares[arrayCount] = new Square();
         squares[arrayCount].type = info_string[stringCount++];
