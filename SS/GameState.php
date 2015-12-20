@@ -8,7 +8,7 @@ class GameState {
    private $GameStatus = "";
    private $GamePosition = "";
    private $Dirty = FALSE;
-      
+      //Foo
    public function __construct($filePath) {
       while (!$this->fp = fopen($filePath , 'r+')) {usleep(100000);}
       while (!flock($this->fp, LOCK_EX)) {usleep(1000000);}
