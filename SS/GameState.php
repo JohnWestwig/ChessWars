@@ -58,7 +58,7 @@ class GameState {
       //Dispatch out to the correct routing:
       switch($actionName) {
          case "STATE":  break;  //No action required.
-         //case "MOVE":   $this->ProcessMove($comID, $actionDetails);  break;
+         case "MOVE":   $this->ProcessMove($comID, $actionDetails);  break;
          //case "JOIN":   $this->ProcessJoin($comID, $actionDetails);  break;
          //case "LEAVE":  $this->ProcessLeave($comID);                 break;
          //case "RESET":  $this->ProcessReset($actionDetails);         break;
