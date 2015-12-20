@@ -3,5 +3,7 @@ This is a test README file for
 
 Erik is great
 =======
-This is John making an edit to the README.
+<<<<<<< HEAD
+=======
+>>>>>>> 42a549b6dc6bf40be1a4bdf0a2abf39369e4d64d
 >>>>>>> c07d0a34ef4ad51c9580ea436b6abf7ec233bdcd
